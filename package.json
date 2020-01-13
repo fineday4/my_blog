@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "bn.js": "5.1.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "pug": "^2.0.4",
+    "random-seed": "^0.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^7.0.0"
+  },
+  
+  "scripts": {
+    "test": "mocha",
+    "lxapp" : "node lxapp.js",
+    "insert_data" : "node utils/insert_mock_data.js"
+  }
+}

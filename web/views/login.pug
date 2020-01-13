@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        include include/head
+
+    body(ontouchstart)
+        section(class="ui-container")
+
+            .ui-form.ui-border-t
+                form(action="#")
+                    .ui-form-item.ui-border-b
+                        label Name
+                        input(id="username" type="text" placeholder="Type user name")
+                        a(href="#" class="ui-icon-close")
+
+                    .ui-form-item.ui-border-b
+                        label Password
+                        input(id="password" type="password" placeholder="Type password")
+                        a(href="#" class="ui-icon-close")
+
+                    .ui-btn-wrap(id="login")
+                        button(class="ui-btn-lg ui-btn-primary") Login
+                    
+        include include/footer
+        script(src="/public/js/login.js")
