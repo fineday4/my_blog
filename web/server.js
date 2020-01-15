@@ -7,7 +7,7 @@ const body_parser = require('body-parser');
 // controllers
 const inspect_robtype_controller = require('./controller/inspect_robtype_controller');
 const inspect_rpc_controller = require("./controller/inspect_rpc_controller");
-const robot_module_controller = require("./controller/robot_module_controller");
+const robot_module_controller = require("./controller/inspect_module_controller");
 
 let app = express();
 
@@ -28,7 +28,7 @@ app.use(session({secret:"hola", resave:false, saveUninitialized:true}));
 
 /// routes
 app.use("/inspect/robtype", inspect_robtype_controller);
-app.use("/inspect/rob_module", robot_module_controller);
+app.use("/inspect/module", robot_module_controller);
 app.use("/action/inspect", inspect_rpc_controller);
 
 

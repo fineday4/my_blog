@@ -1,31 +1,37 @@
 let express = require('express');
-// let robot_module_dao = require('../dao/robot_module_dao');
+let inspect_module_dao = require('../dao/inspect_module_dao');
 let router = express.Router();
-
-router.get("/:inspect_module", function(req, res){
-    let info = req.params; 
-    console.log(info);
-    // robot_module_dao.getOne(info.inspect_module, (err, data)=>{
-    //     if(err){
-    //         console.log("err: ",err);
-    //     }else{
-    //         console.log("data inserted: data: ", data);
-    //         res.json({success: true, logged_in:req.session.logged_in, data: data});
-    //     }
-    // });
-})
 
 
 router.get("/", function(req, res){
-    // robot_module_dao.getAll((err, data)=>{
-    //     if(err){
-    //         console.log("err: ",err);
-    //     }else{
-    //         console.log("data get: data: ", data);
-    //         res.json({success: true, logged_in:req.session.logged_in, data: data});
-    //     }
-    // });
+    console.log("/inspect/module !!!!");
+
+    inspect_module_dao.getAll((err, data)=>{
+        if(err){
+            console.log("err: ",err);
+        }else{
+            // console.log("data get: data: ", data);
+            res.json({success: true, data: data});
+        }
+    });
 });
+
+router.get("/:module", function(req, res){
+    let info = req.params; 
+    console.log("!!!!!!!!!!!! ", info);
+
+    inspect_module_dao.getOne({name: info.module}, (err, data)=>{
+        if(err){
+            console.log("err: ",err);
+        }else{
+            // console.log("22222 data got: ", data);
+            res.json({success: true, data: data});
+        }
+    });
+})
+
+
+
 
 router.post("/", function(req, res){
     let info = req.query;

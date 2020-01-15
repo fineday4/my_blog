@@ -5,7 +5,6 @@ class InspectModuleDao
     constructor(){
         this.TABLE_NAME = "inspect_module";
         db_manager.tableExist(this.TABLE_NAME, (has)=>{
-            console.log("has: ", has);
             if(!has){
                 console.log("creating table cuz table not exist: " + this.TABLE_NAME);
                 db_manager.runSqlCmd(
@@ -57,7 +56,7 @@ class InspectModuleDao
     }
 
     getAll(ret_cb){
-        db_manager.queryAllSqlCmd(`SELECT * FROM inspect_module`, ret_cb);
+        db_manager.queryAllSqlCmd(`SELECT * FROM inspect_module`, [], ret_cb);
     }
 }
 
