@@ -1,4 +1,4 @@
-const db_manager = require('../lib/db_manager');
+const db_manager = require('../../lib/db_manager');
 
 class GlobalDao
 {

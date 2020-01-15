@@ -1,6 +1,6 @@
-const db_manager = require('../lib/db_manager');
+const db_manager = require('../../lib/db_manager');
 
-class InspectIndexDao
+class RobTypeDao
 {
     constructor(){
         this.TABLE_NAME = "rob_type";
@@ -10,7 +10,7 @@ class InspectIndexDao
                 console.log("creating table cuz table not exist: " + this.TABLE_NAME);
                 db_manager.runSqlCmd(
                     `CREATE TABLE rob_type(\
-                        name  CHAR(20) NOT NULL PRIMARY KEY,
+                        name CHAR(20) NOT NULL PRIMARY KEY,
                         description TEXT NOT NULL
                     )`
                 , (err)=>{
@@ -58,4 +58,5 @@ class InspectIndexDao
     }
 }
 
-module.exports = new InspectIndexDao();
+
+module.exports = new RobTypeDao();

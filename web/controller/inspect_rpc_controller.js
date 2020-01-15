@@ -2,8 +2,9 @@ let express = require('express');
 let router = express.Router();
 let run_task = require("../model/Run_task");
 
-// let inspect_robtype_dao = require("../dao/rel_robtype_insitem_dao");
-// let robot_module_dao = require("../dao/robot_module_dao");
+let rel_robtype_insitem_dao = require('../dao/rel_robtype_insitem_dao');
+let inspect_item_dao = require("../dao/inspect_item_dao");
+let inspect_module_dao = require("../dao/inspect_module_dao");
 
 const BN = require('bn.js');
 
@@ -32,9 +33,6 @@ let m_statuses;
 
 let in_create;
 
-//做一个临时记录，为了根据传入数组索引值而查找对应的数组
-let module_temp_ = [];  
-let get_temp_ = [];
 
 //记录对应的模块具体信息，并且分类存储
 let auto_test_ = [];
@@ -48,23 +46,50 @@ let module_select;
 //根据机器人类型获取对应检测的模块
 router.get("/get_list/:rob_type", (req, res)=>{
     let info = req.params;
-    //每次页面刷新之前就需要初始化一下临时变量
-    module_temp_ = [];
-    get_temp_ = [];
+    console.log("000 info: ", info);
 
-    // inspect_robtype_dao.getOne(info.robot, (err, row)=>{
-    //     if(err){
-    //         console.log(" err: ", err);
-    //     }else{
-    //         for(let i = 0; i < row.length; i++){
-    //             get_temp_.push(row[i].chinese_name);
-    //             module_temp_.push(row[i].item_module);
-    //         }
-    //         console.log("get_temp_: ", get_temp_);
-    //         console.log("module_temp_: ", module_temp_);
-    //         res.json({success: true, data: get_temp_});
-    //     }
-    // });
+    rel_robtype_insitem_dao.getSel(info.rob_type, (err, rows)=>{
+        if(err){
+            console.log("err: ", err);
+        }else{
+            console.log("rows: ", rows);
+
+            let item_ary = [];
+
+            let p1 = new Promise((resolve, reject)=>{
+                rows.forEach(element => {
+                    console.log("element: ", element.insitem_id);
+                    inspect_item_dao.getOne({id: element.insitem_id}, (err, one_row)=>{
+                        if(err){
+                            console.log("err: ", err);
+                        }else{
+                            inspect_module_dao.getOne({name: one_row.belong_module}, (err, module_row)=>{
+                                if(err){
+                                    console.log("err: ", err);
+                                }else{
+                                    one_row.belong_module = module_row;
+                                    console.log("module_row: ", module_row);
+                                    
+                                    item_ary.push(one_row);
+                                    if(item_ary.length === rows.length){
+                                        // console.log("111 item_ary: ", item_ary);
+                                        resolve();
+                                    }
+                                }
+                            });
+                            // console.log("000 one_row: ", one_row);
+                        }
+                    });
+                });
+            });
+                            
+            p1.then(()=>{
+                console.log("222 item_ary: ", item_ary);
+                res.json({success: true, data: {} });
+            });
+
+        }
+    });
 });
 
 

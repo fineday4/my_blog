@@ -1,6 +1,6 @@
-const db_manager = require('../lib/db_manager');
+const db_manager = require('../../lib/db_manager');
 
-class InspectIndexDao
+class RelRobtypeInsitem
 {
     constructor(){
         this.TABLE_NAME = "rel_robtype_insitem";
@@ -11,9 +11,8 @@ class InspectIndexDao
                 db_manager.runSqlCmd(
                     `CREATE TABLE rel_robtype_insitem(\
                         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
-                        robot_type  TEXT NOT NULL,\
-                        item_module TEXT NOT NULL,\
-                        chinese_name TEXT NOT NULL
+                        rob_type  TEXT NOT NULL,\
+                        insitem_id TEXT NOT NULL
                     )`
                 , (err)=>{
                     if(err){
@@ -27,7 +26,7 @@ class InspectIndexDao
     }
 
     insert(info, ret_cb){
-        db_manager.runSqlCmd(`INSERT INTO index_item_module (robot, item_module, chinese_name) VALUES (?, ?, ?)`, [info.robot, info.item_module, info.chinese_name], function(err, ret_info, self){
+        db_manager.runSqlCmd(`INSERT INTO rel_robtype_insitem (robot, item_module, chinese_name) VALUES (?, ?, ?)`, [info.robot, info.item_module, info.chinese_name], function(err, ret_info, self){
             console.log("ret_info: ", ret_info);
             
             if(err){
@@ -37,28 +36,35 @@ class InspectIndexDao
             }
         }, this);
     }
-    
-    getOne(robot, ret_cb){
-        console.log(robot);
-        db_manager.queryOneSqlCmd(`SELECT * FROM index_item_module WHERE robot = ?`, [robot] ,ret_cb);
+
+    insertIfNotExist(info, ret_cb){
+        db_manager.queryOneSqlCmd(`SELECT * FROM rel_robtype_insitem WHERE rob_type = ? AND insitem_id = ?`, [info.rob_type, info.insitem_id], (err, one_item)=>{
+            if(err){
+                console.log("err: ", err);
+            }else{
+                if(!one_item){
+                    db_manager.runSqlCmd(`INSERT INTO rel_robtype_insitem (rob_type, insitem_id) VALUES (?, ?)`, [info.rob_type, info.insitem_id], ret_cb);
+                }
+            }
+        });
     }
 
-    getOne2(id, ret_cb){
-        db_manager.queryOneSqlCmd(`SELECT * FROM index_item_module WHERE id = ?`, [id] ,ret_cb);
+    getSel(rob_type, ret_cb){
+        db_manager.queryAllSqlCmd(`SELECT * FROM rel_robtype_insitem WHERE rob_type = ?`, [rob_type], ret_cb);
     }
 
     getAll(ret_cb){
-        db_manager.queryAllSqlCmd(`SELECT * FROM index_item_module`, ret_cb);
+        db_manager.queryAllSqlCmd(`SELECT * FROM rel_robtype_insitem`, ret_cb);
     }
 
     update(info, ret_cb){
-        db_manager.runSqlCmd(`UPDATE index_item_module SET item_module = ? , robot = ?, chinese_name = ? WHERE id = ?`, [info.item_module, info.robot, info.chinese_name, info.id], ret_cb);
+        db_manager.runSqlCmd(`UPDATE rel_robtype_insitem SET item_module = ? , robot = ?, chinese_name = ? WHERE id = ?`, [info.item_module, info.robot, info.chinese_name, info.id], ret_cb);
     }
 
     delete(id, ret_cb){
-        db_manager.runSqlCmd(`DELETE FROM index_item_module WHERE id = ?`, [id], ret_cb);
+        db_manager.runSqlCmd(`DELETE FROM rel_robtype_insitem WHERE id = ?`, [id], ret_cb);
     }
 }
 
 
-module.exports = new InspectIndexDao();
+module.exports = new RelRobtypeInsitem();

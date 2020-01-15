@@ -13,7 +13,7 @@ let requester = chai.request(server_app).keepOpen();
 describe("#server_test.js", ()=>{
     describe("#uri_talker", ()=>{
         it("GET get_list/:rob_type", (done)=>{
-            requester.get("/action/inspect/get_list/fr1511b").end(function(err, res){
+            requester.get("/action/inspect/get_list/fr1511c").end(function(err, res){
                 let ret_json_ary = JSON.parse(res.text).data;
                 console.log("-----------------------------");
                 console.log("ret_json_ary: ", ret_json_ary);
