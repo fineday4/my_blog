@@ -62,26 +62,22 @@ class InspectItemDao
         db_manager.queryOneSqlCmd(`SELECT * FROM inspect_item WHERE id = ?`, [info.id] ,ret_cb);
     }
 
-    getAll(ret_cb){
-        db_manager.queryAllSqlCmd(`SELECT * FROM inspect_item`, ret_cb);
-    }
+    // getAll(ret_cb){
+    //     db_manager.queryAllSqlCmd(`SELECT * FROM inspect_item`, ret_cb);
+    // }
 
-    update(info, ret_cb){
-        db_manager.runSqlCmd(`UPDATE inspect_item SET inspect_module = ? , item_name = ?, chinese_item_name = ?, view_type = ?, result = ?, datetime = ? WHERE id = ?`, [info.inspect_module, info.item_name, info.chinese_item_name, info.view_type, info.result, info.datetime], ret_cb);
-    }
+    // update(info, ret_cb){
+    //     db_manager.runSqlCmd(`UPDATE inspect_item SET inspect_module = ? , item_name = ?, chinese_item_name = ?, view_type = ?, result = ?, datetime = ? WHERE id = ?`, [info.inspect_module, info.item_name, info.chinese_item_name, info.view_type, info.result, info.datetime], ret_cb);
+    // }
 
     //重置状态码为
     update_result(info, ret_cb){
-        db_manager.runSqlCmd(`UPDATE inspect_item SET result = ?, datetime = datetime('now', 'localtime') WHERE inspect_module = ? and item_name = ?`, [info.result, info.inspect_module, info.item_name], ret_cb);
+        db_manager.runSqlCmd(`UPDATE inspect_item SET result = ?, ins_time = datetime('now', 'localtime') WHERE id = ? and name = ?`, [info.result, info.id, info.name], ret_cb);
     }
 
-    // update_result(info, ret_cb){
-    //     db_manager.runSqlCmd(`UPDATE inspect_item SET result = ?, hos_time = ? WHERE inspect_module = ? and chinese_item_name = ?`, [info.result, info.hos_time, info.inspect_module, info.chinese_item_name], ret_cb);
+    // delete(id, ret_cb){
+    //     db_manager.runSqlCmd(`DELETE FROM inspect_item WHERE id = ?`, [id], ret_cb);
     // }
-
-    delete(id, ret_cb){
-        db_manager.runSqlCmd(`DELETE FROM inspect_item WHERE id = ?`, [id], ret_cb);
-    }
 }
 
 

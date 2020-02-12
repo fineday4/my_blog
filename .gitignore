@@ -6,3 +6,5 @@ tmp/*
 !.gitkeep
 
 package-lock.json
+
+.vscode

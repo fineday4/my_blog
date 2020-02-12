@@ -8,6 +8,7 @@ const body_parser = require('body-parser');
 const inspect_robtype_controller = require('./controller/inspect_robtype_controller');
 const inspect_rpc_controller = require("./controller/inspect_rpc_controller");
 const robot_module_controller = require("./controller/inspect_module_controller");
+// const autotask_exccode_controller = require("./controller")
 
 let app = express();
 
@@ -27,6 +28,7 @@ app.use(session({secret:"hola", resave:false, saveUninitialized:true}));
 
 
 /// routes
+// app.use("/inspect/exccode", autotask_exccode_controller);
 app.use("/inspect/robtype", inspect_robtype_controller);
 app.use("/inspect/module", robot_module_controller);
 app.use("/action/inspect", inspect_rpc_controller);

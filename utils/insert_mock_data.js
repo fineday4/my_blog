@@ -11,7 +11,6 @@ setTimeout(()=>{
     /// global
     global_dao.updateVal("rob_type", "fr1511b");
 
-
     /// rob_type
     const data_robtype = [
         {name: "fr1511a", description: "顶升车"},
@@ -51,16 +50,16 @@ setTimeout(()=>{
 
     /// inspect item
     const data_inspect_item = [
-        {name: "base_sensor", description: "位置光电传感器", type: 0, result: 0, belong_module: "base"},
-        {name: "base_emerg", description: "底座急停", type: 0, result: 0,  belong_module: "base"},
-        {name: "base_bump", description: "底座碰撞条", type: 0, result: 0,  belong_module: "base"},
+        {id: 10, name: "sensor", description: "位置光电传感器", type: 3, result: 0, belong_module: "base"},
+        {name: "emerg", description: "底座急停", type: 3, result: 0,  belong_module: "base"},
+        {name: "bump", description: "底座碰撞条", type: 3, result: 0,  belong_module: "base"},
 
-        {name: "roller_bump", description: "辊筒碰撞条", type: 0, result: 0, belong_module: "roller"},
-        {name: "roller_emerg", description: "辊筒急停", type: 0, result: 0, belong_module: "roller"},
-        {name: "roller_autotest", description: "辊筒一键检测", type: 0, result: 0, belong_module: "roller"},
+        {name: "bump", description: "辊筒碰撞条", type: 3, result: 0, belong_module: "roller"},
+        {name: "emerg", description: "辊筒急停", type: 3, result: 0, belong_module: "roller"},
+        {name: "auto_test", description: "辊筒一键检测", type: 1, result: 0, belong_module: "roller"},
 
-        {name: "laser_main", description: "主激光", type: 0, result: 0, belong_module: "laser"},
-        {name: "laser_back", description: "后激光", type: 0, result: 0, belong_module: "laser"}
+        {name: "laser", description: "主激光", type: 2, result: 2, belong_module: "laser"},
+        {name: "back_laser", description: "后激光", type: 2, result: 2, belong_module: "laser"}
     ];
     
     for(let one_item of data_inspect_item){
