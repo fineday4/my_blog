@@ -1,0 +1,259 @@
+{
+
+    "serial_module":[
+        {"description": "串口模块"},
+        {
+            "instance":"lx_base", 
+            "description":"zxcvedwe",
+                "port":{
+                    "value": "ttyS1",
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "loop_rate":{
+                    "value": 50,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "wheel_diameter":{
+                    "value": 0.2,
+                    "type": "string",
+                    "description": "串口端口号"                  
+                }, 
+                "wheel_distance":{
+                    "value": 0.547,
+                    "type": "string",
+                    "description": "串口端口号"                  
+                }, 
+                "encoder_resolution":{
+                    "value": 1000,
+                    "type": "string",
+                    "description": "串口端口号"                  
+                }, 
+                "gear_reduction":{
+                    "value": 32,
+                    "type": "string",
+                    "description": "串口端口号"                  
+                },
+                "is_fr1511_base":{
+                    "value": true,
+                    "type": "string",
+                    "description": "串口端口号"                  
+                }
+
+        },
+        {
+            "instance":"liao_batt", 
+            "description":"zxcvedwe",
+            "port":{
+                "value": "ttyS1",
+                "type": "string",
+                "description": "串口端口号"
+            },
+             "alarm_thres_percent":{
+                "value": 10,
+                "type": "string",
+                "description": "串口端口号"
+            }
+        }
+    ],
+
+    "pcl_module":[
+        {"description": "串口模块"},
+
+        {
+            "instance":"cloud_agg",
+            "description":"zxcvedwe"
+        }
+    ],
+    
+    "pritask_module":[ 
+        {"description": "串口模块"},
+        {
+            "instance":"nav_task",
+            "description":"zxcvedwe",
+                "enable_square_rot":{
+                    "value": false,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "use_seamless_align":{
+                    "value": false,
+                    "type": "string",
+                    "description": "串口端口号"
+                }
+        },
+        {
+            "instance":"charge_task",
+            "description":"zxcvedwe"
+        },
+        {
+            "instance":"elev_task",
+            "description":"zxcvedwe"
+        },
+        {
+            "instance":"tmp_task",
+            "description":"zxcvedwe"
+        },
+        {
+            "instance":"other_task",
+            "description":"zxcvedwe", 
+                "map_name":{
+                    "value": "outmzpick",
+                    "type": "string",
+                    "description": "串口端口号"
+                }
+        }
+    ],
+
+    "subtask_module":[
+        {"description": "串口模块"},
+
+        {
+            "instance":"localplan_task", 
+            "description":"zxcvedwe",
+                "debug":{
+                    "value": false,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "enable_oa":{
+                    "value": true,
+                    "type": "string",
+                    "description": "串口端口号"
+                }, 
+                "enable_safety_controller":{
+                    "value": true,
+                    "type": "string",
+                    "description": "串口端口号"
+                }, 
+                "use_no_head":{
+                    "value": false,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "max_vel_x":{
+                    "value": 1.5,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "max_vel_th":{
+                    "value": 50,
+                    "type": "string",
+                    "description": "串口端口号"
+                }, 
+                "acc_lim_x":{
+                    "value": 0.5,
+                    "type": "string",
+                    "description": "串口端口号"
+                }, 
+                "acc_lim_th":{
+                    "value": 57,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "turn_vel":{
+                    "value": 0.4,
+                    "type": "string",
+                    "description": "串口端口号"
+                }, 
+                "max_load_vel":{
+                    "value": 0.8,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "map_obs_enb":{
+                    "value": false,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "_dimensions: ":{
+                    "value": "---------------",
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "bot_width":{
+                    "value": 0.692,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "bot_front_dist":{
+                    "value": 0.446,
+                    "type": "string",
+                    "description": "串口端口号"
+                }, 
+                "bot_back_dist":{
+                    "value": 0.446,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "cargo_dim_1":{
+                    "value": 0.172,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "cargo_dim_2":{
+                    "value": 0.874,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "cargo_dim_3":{
+                    "value": 1.324,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "cargo_dim_4":{
+                    "value": 1.902,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "cargo_dim_5":{
+                    "value": 1.0,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "cargo_dim_6":{
+                    "value": 1.0,
+                    "type": "string",
+                    "description": "串口端口号"
+                }
+        },
+        {
+            "instance":"misc_task",
+            "description":"zxcvedwe"
+        },
+        {
+            "instance":"vlasercharge_task", 
+            "description":"zxcvedwe",
+                "debug":{
+                    "value": false,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "dist_thres":{
+                    "value": 0.25,
+                    "type": "string",
+                    "description": "串口端口号"
+                }
+        },
+        {
+            "instance":"elev_align_task",
+            "description":"zxcvedwe",
+                "side_long":{
+                    "value": 0.85,
+                    "type": "string",
+                    "description": "串口端口号"
+                }, 
+                "side_short":{
+                    "value": 0.85,
+                    "type": "string",
+                    "description": "串口端口号"
+                },
+                "stop_dis":{
+                    "value": 0.12,
+                    "type": "string",
+                    "description": "串口端口号"
+                }
+        }
+    ]
+}

@@ -8,8 +8,10 @@ class GlobalDao
             if(!has){
                 db_manager.runSqlCmd(
                     `CREATE TABLE global(
-                        name  CHAR(20) NOT NULL PRIMARY KEY,
-                        value VARCHAR(255)
+                        key            CHAR(20)           NOT NULL    PRIMARY KEY,
+                        value          VARCHAR(255)       NOT NULL,
+                        description    TEXT               NOT NULL,
+                        type           TEXT               NOT NULL
                     )`
                     , (err)=>{
                         if(err){
@@ -23,13 +25,13 @@ class GlobalDao
     }
 
     updateVal(name, value, ret_cb){
-        db_manager.queryOneSqlCmd(`SELECT * FROM global WHERE name = ?`, [name], (err, one_item)=>{
+        db_manager.queryOneSqlCmd(`SELECT * FROM global WHERE key = ?`, [name], (err, one_item)=>{
             if(err){
                 console.log("err: ", err);
             }else{
                 if(one_item){
                     // update
-                    db_manager.runSqlCmd(`UPDATE global SET value = ? WHERE name = ?`, [value, name], ret_cb);
+                    db_manager.runSqlCmd(`UPDATE global SET value = ? WHERE key = ?`, [value, name], ret_cb);
 
                 }else{
                     // insert
@@ -40,11 +42,31 @@ class GlobalDao
     }
 
     getVal(name, ret_cb){
-        db_manager.queryOneSqlCmd(`SELECT * FROM global WHERE name = ?`, [name] ,ret_cb);
+        db_manager.queryOneSqlCmd(`SELECT * FROM global WHERE key = ?`, [name] ,ret_cb);
     }
 
     delVal(name, ret_cb){
-        db_manager.queryOneSqlCmd(`DELETE FROM global WHERE name = ?`, [name] ,ret_cb);
+        db_manager.queryOneSqlCmd(`DELETE FROM global WHERE key = ?`, [name] ,ret_cb);
+    }
+
+    insert(glob, ret_cb){
+        db_manager.runSqlCmd(`INSERT INTO global (key, description, value, type) VALUES (?, ?, ?, ?)`, [glob.key, glob.description, glob.value, glob.type], function(err, ret_info, self){
+            console.log("ret_info: ", ret_info);
+            console.log("self: ", self);
+            if(err){
+                ret_cb(err);
+            }else{
+                ret_cb(err, ret_info);
+            }
+        }, this);
+    }
+
+    update(glob, ret_cb){
+        console.log("glob.value: ", glob.value);
+        let str = "UPDATE global SET key=\'"+ glob.key + "\', description=\'" + glob.description + "\', value=\'" + glob.value + "\', type=\'" + glob.type + "\' WHERE key=\'" + glob.old_key + "\';"
+        db_manager.runSqlCmd(str, function(err){
+            ret_cb(err);
+        });
     }
 }
 
