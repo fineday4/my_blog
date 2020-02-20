@@ -10,22 +10,19 @@ const body_parser = require('body-parser');
 const pcfg_param_controller = require('./controller/pcfg/pcfg_param_controller');
 const pcfg_rpc_controller = require('./controller/pcfg/pcfg_rpc_controller');
 
-//inspect
-const inspect_robtype_controller = require('./controller/inspect_robtype_controller');
-const inspect_rpc_controller = require("./controller/inspect_rpc_controller");
-const robot_module_controller = require("./controller/inspect_module_controller");
 
 let app = express();
 
 const PORT = 8080;
 
 // set
-app.set('view engine', 'pug');//设置渲染引擎
-app.set('views','./views');  //设置views的文件夹
+// app.set('view engine', 'pug');//设置渲染引擎
+// app.set('views','./views');  //设置views的文件夹
 
 // 
-app.use("/public", express.static("public"));
+// app.use("/public", express.static("public"));
 // app.use("/node_modules", express.static("node_modules"));
+
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
 app.use(session({
@@ -42,10 +39,6 @@ app.use(session({
 /// routes
 app.use("/action/pcfg", pcfg_rpc_controller);
 app.use("/pcfg/param", pcfg_param_controller);
-
-app.use("/inspect/robtype", inspect_robtype_controller);
-app.use("/inspect/module", robot_module_controller);
-app.use("/action/inspect", inspect_rpc_controller);
 
 
 /// app
